@@ -23,6 +23,9 @@ namespace Scripts.UI
         [SerializeField] private bool m_lookAtTarget = false;
         [SerializeField] private bool m_lookBackwards = true;
 
+        [Header("Debug")]
+        [SerializeField] private bool m_drawGizmo = true;
+
         private CanvasGroup m_canvasGroup;
         private Coroutine m_fadeCoroutine;
         private bool m_isVisible = false;
@@ -110,11 +113,12 @@ namespace Scripts.UI
 
         private void OnDrawGizmos()
         {
+            if (!m_drawGizmo) return;
+
             Color color = Color.red;
             color.a = 0.4f;
             Gizmos.color = color;
             GizmosEx.DrawGizmoDisk(transform, m_visibleRange);
         }
-
     }
 }
